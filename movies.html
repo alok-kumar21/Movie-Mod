@@ -45,61 +45,54 @@
     </header>
     <main class="mb-5">
       <section class="container">
-        <h2 class="mt-5 mb-3">Add a New Movies</h2>
+        <h2 class="fs-1">List Of Movies</h2>
         <form action="">
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label" for="genreFilter">Filter by Genre</label
+              ><br />
+              <select class="form-select" name="" id="genreFilter">
+                <option value="all">All Genres</option>
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+              </select>
+            </div>
+            <dov class="col-md-6">
+              <label class="form-label" for="directorFilter"
+                >Filter by Director</label
+              ><br />
+              <select class="form-select" name="" id="directorFilter">
+                <option value="all">All Director</option>
+                <option value="John Doe">John Doe</option>
+                <option value="Jane Smith">Jane Smith</option>
+              </select>
+            </dov>
+          </div>
+          <h2 class="mt-5 mb-3">Add a New Movies</h2>
+
           <label class="form-label" for="title">Title: </label><br />
           <input class="form-control" type="text" id="title" /><br />
           <label class="form-label" for="genre">Genre:</label><br />
-         
 
-            <select class="form-select" name="" id="genre">
-              <option class="dropdown-item" value="#">Select</option>
-              <option class="dropdown-item" value="Action">Action</option>
-              <option class="dropdown-item" value="Comedy">Comedy</option>
-              <option class="dropdown-item" value="Drama">Drama</option>
-              </select>
-            <br />
-         
-          <label class="form-label" for="releaseDate">Release Date:</label><br />
+          <select class="form-select" name="" id="genre">
+            <option class="dropdown-item" value="#">Select</option>
+            <option class="dropdown-item" value="Action">Action</option>
+            <option class="dropdown-item" value="Comedy">Comedy</option>
+            <option class="dropdown-item" value="Drama">Drama</option>
+          </select>
+          <br />
+
+          <label class="form-label" for="releaseDate">Release Date:</label
+          ><br />
           <input class="form-control" type="date" id="releaseDate" /><br />
 
           <label class="form-label" for="director">Director:</label><br />
           <input class="form-control" type="text" id="director" /><br />
-          <button class="btn btn-primary" type="button" id="addMovie">Add Movie</button>
+          <button class="btn btn-primary" type="button" id="addMovie">
+            Add Movie
+          </button>
         </form>
-        <div id="row" class="row">
-          <div class="col-md-6 mt-4">
-            <div class="card">
-              <div class="card-header">
-                <h2>Movie 1</h2>
-              </div>
-              <div class="card-body">
-                <p><strong>Genre: </strong> Action</p>
-                <p><strong>Release Date: </strong> 2023-01-15</p>
-                <p><strong>Director: </strong> John Doe</p>
-                <a class="btn btn-primary" href="movieDetails.html?id=1"
-                  >Details</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mt-4">
-            <div class="card">
-              <div class="card-header">
-                <h2>Movie 2</h2>
-              </div>
-              <div class="card-body">
-                <p><strong>Genre: </strong> Drama</p>
-                <p><strong>Release Date: </strong> 2023-02-20</p>
-                <p><strong>Director: </strong> Jane Smith</p>
-                <a class="btn btn-primary" href="movieDetails.html?id=2"
-                  >Details</a
-                >
-              </div>
-            </div>
-          </div>
-          
+        <div id="row" class="row"></div>
       </section>
     </main>
 
@@ -109,91 +102,129 @@
           id: 1,
           title: "Movie 1",
           genre: "Comedy",
-          releaseDate:"2023-01-15",
-          director: "John Doe"
+          releaseDate: "2023-01-15",
+          director: "John Doe",
         },
         {
           id: 2,
           title: " Movie 2",
           genre: "Drama",
-          releaseDate:"2023-02-20",
-          director: "Jane Smith"
-         
+          releaseDate: "2023-02-20",
+          director: "Jane Smith",
+        },
+        {
+          id: 3,
+          title: " Movie 3",
+          genre: "Action",
+          releaseDate: "2023-02-20",
+          director: "Ridely Scott",
         },
       ];
-     
+
       const addMovie = document.querySelector("#addMovie");
-     
-        const row = document.querySelector("#row");
 
-       
-      function updateMovieList(newmovieData){
-        row.innerHTML = ""
-        for(let i=0;i<newmovieData.length;i++){
+      const row = document.querySelector("#row");
 
-      
-        const col = document.createElement("div");
-        col.className = "col-md-6 mt-5";
+      function updateMovieList(newmovieData) {
+        row.innerHTML = "";
+        for (let i = 0; i < newmovieData.length; i++) {
+          const col = document.createElement("div");
+          col.className = "col-md-6 mt-5";
 
-        const card = document.createElement("div");
-        card.className = "card";
+          const card = document.createElement("div");
+          card.className = "card";
 
-        const cardHeader = document.createElement("div");
-        cardHeader.className = "card-header";
-        card.appendChild(cardHeader);
+          const cardHeader = document.createElement("div");
+          cardHeader.className = "card-header";
+          card.appendChild(cardHeader);
 
-        const h2 = document.createElement("h2");
-        h2.textContent = `${newmovieData[i].title}`;
+          const h2 = document.createElement("h2");
+          h2.textContent = `${newmovieData[i].title}`;
 
-        cardHeader.appendChild(h2);
+          cardHeader.appendChild(h2);
 
-        const cardBody = document.createElement("div");
-        cardBody.className = "card-body";
-        card.appendChild(cardBody);
+          const cardBody = document.createElement("div");
+          cardBody.className = "card-body";
+          card.appendChild(cardBody);
 
-        const p = document.createElement("p");
-        p.innerHTML = `<strong>Genre: </strong>${newmovieData[i].genre}`;
-        cardBody.appendChild(p);
-        const p1 = document.createElement("p");
-        p1.innerHTML = `<strong>Release Date: </strong>${newmovieData[i].releaseDate}`;
-        cardBody.appendChild(p1);
-        const p2 = document.createElement("p");
-        p2.innerHTML = `<strong>Director: </strong>${newmovieData[i].director}`;
-        cardBody.appendChild(p2);
+          const p = document.createElement("p");
+          p.innerHTML = `<strong>Genre: </strong>${newmovieData[i].genre}`;
+          cardBody.appendChild(p);
+          const p1 = document.createElement("p");
+          p1.innerHTML = `<strong>Release Date: </strong>${newmovieData[i].releaseDate}`;
+          cardBody.appendChild(p1);
+          const p2 = document.createElement("p");
+          p2.innerHTML = `<strong>Director: </strong>${newmovieData[i].director}`;
+          cardBody.appendChild(p2);
 
-        const a = document.createElement("a");
-        a.href = `movieDetails.html?id=${newmovieData[i].id}`
-        a.className = "btn btn-primary"
-        a.textContent = "Details"
-      
+          const a = document.createElement("a");
+          a.href = `movieDetails.html?id=${newmovieData[i].id}`;
+          a.className = "btn btn-primary";
+          a.textContent = "Details";
 
-        cardBody.appendChild(a)
+          cardBody.appendChild(a);
 
-        col.appendChild(card);
+          col.appendChild(card);
 
-        row.appendChild(col);
+          row.appendChild(col);
         }
       }
 
-      addMovie.addEventListener("click",function(){
+      addMovie.addEventListener("click", function () {
         const title = document.querySelector("#title").value;
         const genre = document.querySelector("#genre").value;
         const date = document.querySelector("#releaseDate").value;
         const director = document.querySelector("#director").value;
-       
-          const newMovieId = movieData.length + 1;
-          const newMovie = {
-            id:newMovieId,
-            title:title,
-            genre:genre,
-            releaseDate:date,
-            director:director
-          };
-          movieData.push(newMovie)
-          updateMovieList(movieData)
-        
+
+        const newMovieId = movieData.length + 1;
+        const newMovie = {
+          id: newMovieId,
+          title: title,
+          genre: genre,
+          releaseDate: date,
+          director: director,
+        };
+        movieData.push(newMovie);
+        updateMovieList(movieData);
       });
-       
+
+      const genreFilter = document.querySelector("#genreFilter");
+
+      genreFilter.addEventListener("change", applyGenreFilter);
+
+      function applyGenreFilter() {
+        let newGenre = [];
+
+        if (genreFilter.value !== "all") {
+          for (let i = 0; i < movieData.length; i++) {
+            if (movieData[i].genre === genreFilter.value) {
+              newGenre.push(movieData[i]);
+            }
+          }
+        }
+
+        updateMovieList(newGenre);
+      }
+
+      const directorFilter = document.querySelector("#directorFilter");
+
+      directorFilter.addEventListener("change", applyDirectorFilter);
+
+      function applyDirectorFilter() {
+        let newDirector = [];
+
+        if (directorFilter.value !== "all") {
+          for (let i = 0; i < movieData.length; i++) {
+            if (movieData[i].director === directorFilter.value) {
+              newDirector.push(movieData[i]);
+            }
+          }
+        }
+
+        updateMovieList(newDirector);
+      }
+
+      updateMovieList(movieData);
     </script>
   </body>
 </html>
